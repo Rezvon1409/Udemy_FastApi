@@ -21,6 +21,3 @@ class User(Base):
     updated_at = Column(TIMESTAMP, server_default=func.now(), onupdate=func.now())
 
     courses = relationship("Course", back_populates="author")
-    purchases = relationship("Purchase", back_populates="user")
-    reviews = relationship("Review", back_populates="user")
-    progress = relationship("LessonProgress", back_populates="user")

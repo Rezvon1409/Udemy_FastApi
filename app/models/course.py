@@ -19,5 +19,3 @@ class Course(Base):
 
     author = relationship("User", back_populates="courses")
     lessons = relationship("Lesson", back_populates="course")
-    purchases = relationship("Purchase", back_populates="course")
-    reviews = relationship("Review", back_populates="course")

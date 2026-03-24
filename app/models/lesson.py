@@ -18,4 +18,3 @@ class Lesson(Base):
 
     course = relationship("Course", back_populates="lessons")
     tasks = relationship("Task", back_populates="lesson")
-    progress = relationship("LessonProgress", back_populates="lesson")
