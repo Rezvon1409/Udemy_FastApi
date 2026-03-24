@@ -27,7 +27,6 @@ def get_current_user(request: Request, db: Session = Depends(get_db)) -> User:
         raise HTTPException(status_code=401, detail="User not found")
     return user
 
-
 @router.post("/register", response_model=UserResponse)
 def register(data: UserRegister, db: Session = Depends(get_db)):
     existing = db.query(User).filter(User.email == data.email).first()
@@ -36,7 +35,8 @@ def register(data: UserRegister, db: Session = Depends(get_db)):
     user = User(
         email=data.email,
         password_hash=hash_password(data.password),
-        full_name=data.full_name
+        full_name=data.full_name,
+        role=data.role
     )
     db.add(user)
     db.commit()
