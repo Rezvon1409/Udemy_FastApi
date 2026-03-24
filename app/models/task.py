@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, Text, TIMESTAMP, ForeignKey, Enu
 from sqlalchemy.sql import func
 from app.database import Base
 import enum
+from sqlalchemy.orm import relationship
 
 
 class TaskTypeEnum(str, enum.Enum):
@@ -20,3 +21,5 @@ class Task(Base):
     task_type = Column(Enum(TaskTypeEnum), nullable=False)
     created_at = Column(TIMESTAMP, server_default=func.now())
     updated_at = Column(TIMESTAMP, server_default=func.now(), onupdate=func.now())
+
+    lesson = relationship("Lesson", back_populates="tasks")
